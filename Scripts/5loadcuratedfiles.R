@@ -5,51 +5,8 @@ library("PraatR")
 
 
 #load all the file path names in the 3d matrix 
-directorylist<-c("bestanden/112541-(compleet-16)",
-                 "bestanden/113128-(compleet-16)",
-                 "bestanden/113959-(compleet-16)",
-                 "bestanden/114462-(compleet-16)",
-                 "bestanden/115918-(compleet-16)",
-                 "bestanden/116838-(compleet-16)",
-                 "bestanden/117338-(compleet-16)",
-                 "bestanden/117579-(compleet-16)",
-                 "bestanden/117583-(compleet-16)",
-                 "bestanden/117633-(compleet-16)",
-                 "bestanden/118133-(compleet-16)",
-                 "bestanden/118469-(compleet-16)",
-                 "bestanden/118520-(compleet-16)",
-                 "bestanden/118602-(compleet-16)",
-                 "bestanden/99649",
-                 "bestanden/113027",
-                 "bestanden/113410",
-                 "bestanden/117920",
-                 "bestanden/119875",
-                 "bestanden/112536-(compleet-15)",
-                 "bestanden/120358-(compleet-15-s4-ontbreekt)",
-                 "bestanden/100964-(compleet-16)",
-                 "bestanden/99427",
-                 "bestanden/112845", 
-                 "bestanden/104908",
-                 "bestanden/107671",
-                 "bestanden/109206",
-                 "bestanden/111556",
-                 "bestanden/112654",
-                 "bestanden/113316",
-                 "bestanden/113696", # 
-                 "bestanden/114285", #
-                 "bestanden/114319",
-                 "bestanden/114392", #
-                 "bestanden/114510", #
-                 "bestanden/115385", #
-                 "bestanden/116896", #
-                 "bestanden/117162", #
-                 "bestanden/117517", #
-                 "bestanden/118217", #
-                 "bestanden/119369", #
-                 "bestanden/120338", #
-                 "bestanden/121008", #
-                 "bestanden/121409")
-
+directorylist<-c("[directory1]",
+                 "[directory2]")
 
 # make 3d matrix, patient, session, number of parts, name and 4 other measures
 noData <- rep(NaN, length(directorylist)*5*4); 
@@ -83,7 +40,6 @@ for(j in 1:length(directorylist)){
 
 
 ### data import
-
 timesteppitch<-0.01
 PitchArguments = list(timesteppitch, 75, 600)
 FullPath = function(FileName){ return( paste( "C:/Users/Tom-Martijn/Documents/FortaOnderzoek/Forta4/", FileName, sep="") ) }

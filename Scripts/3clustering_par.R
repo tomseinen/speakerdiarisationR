@@ -44,7 +44,6 @@ d_funClust <- function(i, j) {
 #Send variables to cluster
 clusterExport(cl, c("d_funClust","peaks","cn","fvNoSil","d","labda"))
 
-
 #create distance matrix using parallel execution
 D_1 <- 
   pbsapply(1:nrow(peaks),cl = cl, function(i) #parSapply with process bar =pbsapply
