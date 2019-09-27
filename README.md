@@ -1,5 +1,4 @@
-# speakerdiarisationR
-speaker diarisation in R
+# Speaker Diarisation in R
 
 This work contains a pipeline used for diarizing audio files with two speakers used in a psychological and paralinguistic research project. 
 
