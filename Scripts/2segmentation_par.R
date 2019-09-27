@@ -12,16 +12,18 @@ print("segmentation/")
 no_cores <- detectCores() - 1
 cl <- makeCluster(no_cores)
 
+
+
+# column numbers of the feature vector used
+cn<-c() # fill in your own numbers 
+
+## Segmentation parameters
+d<-dim(fvNoSil[,cn])[2]
+labda<-1
 #set the window size, w being the number of feature vectors in one window.
 w<-50
 
-# column numbers of the feature vector used
-#cn<-c(1,2)
-cn<--c(1,14,15)
-#cn<--c(14,15)
-d<-dim(fvNoSil[,cn])[2]
-labda<-1
-
+## Function to calculate the Bayesian Information Criterion
 d_funSeg <- function(obs) {
   cov0<-cov(fvNoSil[c((obs-(w-1)):(obs+w)),cn])
   cov1<-cov(fvNoSil[c((obs-(w-1)):(obs)),cn])
@@ -33,8 +35,10 @@ d_funSeg <- function(obs) {
   bicdif
 }
 
+## Send variables to parallel cluster
 clusterExport(cl, c("d_funSeg","cn","fvNoSil","d","labda","w"))
 
+## Calcualter bic differences
 bd<-pbsapply(w:(dim(fvNoSil)[1]-w),cl=cl, function(obs) d_funSeg(obs))
 stopCluster(cl)
 
@@ -46,8 +50,8 @@ bicdif<-data.frame(bicdif, fvNoSil$t, fvNoSil$sample)
 # plot the bic diferences
 plot_ly(data = bicdif, x = ~fvNoSil.t, y = ~bicdif)
 
-# find the changepoints
-# using growing window detection
+### find the changepoints to detect seperate speakers
+# Function finding peaks in bicdiff using growing window detection
 find_peaks <- function (x, m = 3, min=0, distance=0){
   shape <- diff(sign(diff(x, na.pad = FALSE)))
   pks <- sapply(which(shape < 0), FUN = function(i){

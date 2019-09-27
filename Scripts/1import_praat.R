@@ -1,13 +1,15 @@
-
 print("importing files/")
 
-#path of wave file
-FullPath = function(FileName){ return( paste( "C:/Users/Tom-Martijn/Documents/FortaOnderzoek/Forta4/", FileName, sep="") ) }
+##path of wave file
+# specify your project directory C:/Users/../Documents/Rproject/
+# needed for PraatR
+FullPath = function(FileName){ return( paste( "[Fullpath to your project directory]", FileName, sep="") ) }
 
 #Get mp3path
 MP3path = FullPath(paste(directory,file,sep="/"))
 file.exists(MP3path)
 
+## Use praat to create a pitch file
 print("Pitch")
 PitchPath = sub(MP3path,pattern=".MP3",replacement=".Pitch")
 PitchPathMat = sub(MP3path,pattern=".MP3",replacement=".Pitchmat")
@@ -23,7 +25,7 @@ if(!file.exists(PitchPath)){
   X1pitch<-praat( "Get time from frame number...", arguments=list(1),input=PitchPath)
 }
 
-#Use praat to create MFCC data
+## Use praat to create MFCC data
 print("MFCC")
 MFCCPath = sub(MP3path,pattern=".MP3",replacement=".MFCC")
 MFCCPathMat = sub(MP3path,pattern=".MP3",replacement=".MFCCmat")
